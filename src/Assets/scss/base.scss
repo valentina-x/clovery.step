@@ -1,0 +1,14 @@
+@import "_default-import";
+
+html, body {
+	width: 100%;
+	overflow-x: hidden;
+}
+
+body {
+	font-family: $regular, Arial, Helvetica, sans-serif;
+}
+
+a {
+	color: $links;
+}

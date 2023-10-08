@@ -1,0 +1,13 @@
+@import "../../Assets/scss/default-import";
+
+/* APP STYLES */
+
+.container {
+	max-width: remHandler(1280);
+	margin: remHandler(20) auto;
+	padding: remHandler(20);
+	background-color: #aa4444;
+	display: flex;
+	align-items: flex-start;
+	color: $white;
+}

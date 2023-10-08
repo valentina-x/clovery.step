@@ -1,0 +1,67 @@
+@import "../../Assets/scss/default-import";
+
+/* BUTTON STYLES */
+
+$purple-hover: #5238C6;
+$purple-activated: #361EA5;
+
+$dark-hover: #23273F;
+$dark-activated: #01051E;
+
+@mixin styleButton($bg-c, $colorHover, $colorActivated, $colorDisabled) {
+	&.button {
+		background-color: $bg-c;
+		&_activated {
+			background-color: $colorActivated;
+		}
+		&_disabled {
+			opacity: 0.3;
+			pointer-events: none;
+			background-color: $colorDisabled;
+		}
+		&:hover {
+			cursor: pointer;
+			background-color: $colorHover;
+		}
+	}
+}
+
+.button {
+	height: remHandler(32);
+}
+
+.button {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.button {
+	color: $white;
+	font-size: remHandler(12);
+	text-transform: uppercase;
+	letter-spacing: 0.03em;
+	line-height: remHandler(20);
+	text-decoration: none;
+}
+
+.button {
+	padding: 0 remHandler(12);
+}
+
+.button {
+	border-radius: remHandler(4);
+}
+
+.button {
+	transition: background-color 0.6s;
+}
+
+.button {
+	&--purple {
+		@include styleButton($secondary, $purple-hover, $purple-activated, $secondary);
+	}
+	&--dark {
+		@include styleButton($primary, $dark-hover, $dark-activated, $primary);
+	}
+}

@@ -1,0 +1,16 @@
+@import "../../Assets/scss/default-import";
+
+/* POINTS AWARDING STYLES */
+
+.pointsawardingdorm {
+	width: auto;
+	max-width: remHandler(660);
+	padding: remHandler(28) remHandler(36);
+	& label {
+		display: block;
+		margin-bottom: remHandler(32);
+	}
+	& input {
+		width: 100%;
+	}
+}
