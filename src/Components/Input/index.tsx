@@ -1,17 +1,12 @@
-import React from "react";
+import React, { InputHTMLAttributes } from 'react';
 import './style.scss';
 
-// interface IInputProps {
-// 	className?: string;
-// 	inputName: React.ReactNode;
-// }
+interface IInputProps extends InputHTMLAttributes<HTMLInputElement> {
+  className: string;
+}
 
-// const Input: React.FC<IInputProps> = ({ className, inputName }) => {
-// 	return (
-// 		<label htmlFor={inputName} className>
-// 			<input name={inputName} value={inputValue} placeholder={inputPlaceholder} />
-// 		</label>
-// 	)
-// }
+const Input: React.FC<IInputProps> = ({ className, ...rest }) => {
+  return <input className={className} {...rest} />;
+};
 
-// export default Input;
+export default Input;

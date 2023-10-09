@@ -11,14 +11,17 @@ $dark-activated: #01051E;
 @mixin styleButton($bg-c, $colorHover, $colorActivated, $colorDisabled) {
 	&.button {
 		background-color: $bg-c;
+
 		&_activated {
 			background-color: $colorActivated;
 		}
+
 		&_disabled {
 			opacity: 0.3;
 			pointer-events: none;
 			background-color: $colorDisabled;
 		}
+
 		&:hover {
 			cursor: pointer;
 			background-color: $colorHover;
@@ -61,7 +64,12 @@ $dark-activated: #01051E;
 	&--purple {
 		@include styleButton($secondary, $purple-hover, $purple-activated, $secondary);
 	}
+
 	&--dark {
 		@include styleButton($primary, $dark-hover, $dark-activated, $primary);
+	}
+
+	&--alignment {
+		margin: remHandler(28) 0 0 auto;
 	}
 }

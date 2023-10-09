@@ -4,26 +4,38 @@
 
 .title {
 	font-size: remHandler(32);
+
 	&--size28 {
 		font-size: remHandler(28);
 		font-weight: 600;
 	}
+
 	&--size20 {
 		font-size: remHandler(20);
 	}
-	&--size16 {
+
+	&--size16s {
 		font-size: remHandler(16);
 		font-family: $semibold;
 	}
+
+	&--size16r {
+		font-size: remHandler(16);
+	}
+
 	&--size14 {
+		color: $text50;
 		font-size: remHandler(14);
 	}
+
 	&--size12 {
 		font-size: remHandler(12);
 	}
+
 	&--mb8 {
 		margin-bottom: remHandler(8);
 	}
+
 	&--mb28 {
 		margin-bottom: remHandler(28);
 	}

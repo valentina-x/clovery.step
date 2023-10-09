@@ -4,6 +4,7 @@
 
 .input {
 	width: 100%;
+	height: remHandler(44);
 	padding: 0 remHandler(6);
 }
 
@@ -23,7 +24,13 @@
 }
 
 .input {
-	&--text {
-		height: remHandler(44);
+	&--textarea {
+		width: 100%;
+		height: remHandler(116);
+		resize: none;
+	}
+
+	&--textarea {
+		padding: remHandler(10) remHandler(8);
 	}
 }

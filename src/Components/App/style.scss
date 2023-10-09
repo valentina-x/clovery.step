@@ -11,3 +11,13 @@
 	align-items: flex-start;
 	color: $white;
 }
+
+.margin {
+	&--mb12 {
+		margin-bottom: remHandler(12);
+	}
+
+	&--mt12mb12 {
+		margin: remHandler(12) 0;
+	}
+}
