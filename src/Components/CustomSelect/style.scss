@@ -1,0 +1,159 @@
+@import "../../Assets/scss/default-import";
+
+/* CUSTOM SELECT STYLES */
+
+
+.selection {
+	display: flex;
+	align-items: flex-start;
+
+	&__item {
+		width: 100%;
+		position: relative;
+	}
+
+	&__input {
+		width: 100%;
+		height: remHandler(44);
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		background-color: $white;
+		cursor: pointer;
+		padding: 0 remHandler(14) 0 remHandler(6);
+		border: 1px solid $gray-dark;
+		border-radius: remHandler(2);
+		box-sizing: border-box;
+		transition: all 0.6s;
+
+		& * {
+			pointer-events: none;
+		}
+
+		& input {
+			border: none;
+			padding: 0;
+			margin: 0;
+			color: $gray-dark;
+			font-size: remHandler(16);
+			user-select: none;
+			background-color: transparent;
+
+			&::placeholder {
+				color: $gray-dark;
+				font-size: remHandler(16);
+				transition: all 0.6s;
+			}
+		}
+
+		& svg {
+			opacity: 0.2;
+			width: remHandler(28);
+			height: auto;
+			transition: all 0.6s;
+		}
+
+		&:hover {
+			color: $primary;
+			border-color: $primary;
+
+			& svg {
+				opacity: 1;
+			}
+
+			& input {
+				color: $primary;
+
+				&::placeholder {
+					color: $primary;
+				}
+			}
+		}
+
+		&.active {
+			color: $primary;
+			border-color: $primary;
+
+			& input {
+				color: $primary;
+
+				&::placeholder {
+					color: $primary;
+				}
+			}
+
+			& svg {
+				opacity: 1;
+				transform: rotate(180deg);
+			}
+		}
+	}
+
+	&__list {
+		width: 100%;
+		padding: remHandler(50);
+		background-color: $white;
+		position: absolute;
+		left: 0;
+		top: remHandler(44);
+		z-index: 33;
+		opacity: 0;
+		visibility: hidden;
+		box-sizing: border-box;
+		padding: remHandler(20);
+		box-shadow: 3px 10px 20px rgba(230, 230, 230, 0.5);
+		border-radius: 4px;
+		transition: all 0.6s;
+
+		&.active {
+			opacity: 1;
+			visibility: visible;
+		}
+
+		& input {
+			display: none;
+
+			&:checked+label {
+
+				& svg {
+					opacity: 0.3;
+				}
+			}
+		}
+
+		&-item {
+			display: flex;
+			align-items: center;
+			position: relative;
+			height: remHandler(40);
+			margin-bottom: remHandler(14);
+			cursor: pointer;
+			transition: all 0.6s;
+
+			& svg {
+				width: remHandler(24);
+				height: remHandler(24);
+				margin-left: remHandler(10);
+				margin-right: remHandler(16);
+				opacity: 0;
+				transition: opacity 0.6s;
+			}
+
+			& span {
+				font-size: remHandler(14);
+			}
+
+			&:last-child {
+				margin-bottom: 0;
+			}
+
+			&:hover {
+				background-color: $hover;
+
+				& svg {
+					opacity: 1;
+				}
+			}
+		}
+	}
+}

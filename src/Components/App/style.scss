@@ -17,6 +17,10 @@
 		margin-bottom: remHandler(12);
 	}
 
+	&--mb32 {
+		margin-bottom: remHandler(32);
+	}
+
 	&--mt12mb12 {
 		margin: remHandler(12) 0;
 	}

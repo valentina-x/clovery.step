@@ -5,6 +5,7 @@ import './style.scss';
 import Button from '../Button/index';
 import Title from '../Title/index';
 import Textarea from '../Textarea/index';
+import CustomSelect from '../CustomSelect/index';
 
 /* types data form */
 import { PointsAwardingFields } from '../PointsAwarding/types';
@@ -26,12 +27,12 @@ export default function PointsAwarding({ onSubmit }: IPointsAwardingProps) {
   };
 
   return (
-    <form className='pointsawardingdorm' onSubmit={handleSubmit}>
+    <form className='pointsawardingform' onSubmit={handleSubmit}>
       <Title className='title title--size20 title--mb28'>
         Начисление баллов
       </Title>
 
-      <label className='margin margin--mb12'>
+      <label className='margin margin--mb32'>
         <Title className='title title--size14 title--mb8'>Кому</Title>
         <Textarea
           className='input input--textarea'
@@ -41,16 +42,17 @@ export default function PointsAwarding({ onSubmit }: IPointsAwardingProps) {
         />
       </label>
 
-      <label className='margin margin--mb12'>
+      <label className='margin margin--mb32'>
         <Title className='title title--size14 title--mb8'>
           Активность / конкурс
         </Title>
       </label>
 
-      <label className='margin margin--mb12'>
+      <label className='margin margin--mb32'>
         <Title className='title title--size14 title--mb8'>
           Причина начисления
         </Title>
+        <CustomSelect />
       </label>
 
       <Button className='button button--purple button--alignment' type='submit'>
