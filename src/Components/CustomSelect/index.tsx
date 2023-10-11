@@ -37,7 +37,7 @@ const CustomSelect: React.FC = ({}) => {
               <use xlinkHref='#s_chevron-down'></use>
             </svg>
           </div>
-          <div className='selection__list active'>
+          <div className='selection__list'>
             <input
               type='checkbox'
               value='5'
