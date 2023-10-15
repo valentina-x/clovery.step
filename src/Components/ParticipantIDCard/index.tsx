@@ -27,7 +27,7 @@ export default function ParticipantID({ onSubmit }: IParticipantIDProps) {
 
   return (
     <div className='participantid'>
-      <Title className='title title--size20 title--mb28'>История начислений</Title>
+      <Title className='title title--size20 title--mb20'>История начислений</Title>
       <form onSubmit={handleSubmit}>
         <label className='margin margin--mb12'>
           <Title className='title title--size14 title--mb8'>Поиск по ID участника</Title>
@@ -43,19 +43,47 @@ export default function ParticipantID({ onSubmit }: IParticipantIDProps) {
           Поиск
         </Button>
       </form>
-      <div className='participant-info'>
-        <div className='date-points'>
-          <Title className='title title--size14 title--mb28 title--modecolor'>
-            17 октября 2023, 12:00
-          </Title>
-          <Title className='title title--size16r title--modecolor--purple'>+25 баллов</Title>
+      <div className='participantid__wrapper'>
+        <div className='participantid__info'>
+          <div className='participantid__info-points'>
+            <Title className='title title--size14'>17 октября 2023, 12:00</Title>
+            <Title className='title title--size16r title--purple title--mode'>+25 баллов</Title>
+          </div>
+          <Title className='title title--size12 title--mt6'>Активность:</Title>
+          <Title className='title title--size16r title--mb20'>Конкурс логотипов для Шага</Title>
+          <Title className='title title--size12 title--mt9'>Причина начисления:</Title>
+          <Title className='title title--size16r'>Победа, оценка работ</Title>
         </div>
-        <Title className='title title--size12 title--mb2 title--modecolor'>Активность:</Title>
-        <Title className='title title--size16r title--mb28'>Конкурс логотипов для Шага</Title>
-        <Title className='title title--size12 title--mb2 title--modecolor'>
-          Причина начисления:
-        </Title>
-        <Title className='title title--size16r'>Победа, оценка работ</Title>
+        <div className='participantid__info'>
+          <div className='participantid__info-points'>
+            <Title className='title title--size14'>17 октября 2023, 12:00</Title>
+            <Title className='title title--size16r title--purple title--mode'>+25 баллов</Title>
+          </div>
+          <Title className='title title--size12 title--mt9'>Активность:</Title>
+          <Title className='title title--size16r title--mb20'>Конкурс логотипов для Шага</Title>
+          <Title className='title title--size12 title--mt9'>Причина начисления:</Title>
+          <Title className='title title--size16r'>Победа, оценка работ</Title>
+        </div>
+        <div className='participantid__info'>
+          <div className='participantid__info-points'>
+            <Title className='title title--size14'>17 октября 2023, 12:00</Title>
+            <Title className='title title--size16r title--purple title--mode'>+25 баллов</Title>
+          </div>
+          <Title className='title title--size12 title--mt9'>Активность:</Title>
+          <Title className='title title--size16r title--mb20'>Конкурс логотипов для Шага</Title>
+          <Title className='title title--size12 title--mt9'>Причина начисления:</Title>
+          <Title className='title title--size16r'>Победа, оценка работ</Title>
+        </div>
+        <div className='participantid__info'>
+          <div className='participantid__info-points'>
+            <Title className='title title--size14'>17 октября 2023, 12:00</Title>
+            <Title className='title title--size16r title--purple title--mode'>+25 баллов</Title>
+          </div>
+          <Title className='title title--size12 title--mt9'>Активность:</Title>
+          <Title className='title title--size16r title--mb20'>Конкурс логотипов для Шага</Title>
+          <Title className='title title--size12 title--mt9'>Причина начисления:</Title>
+          <Title className='title title--size16r'>Победа, оценка работ</Title>
+        </div>
       </div>
     </div>
   );

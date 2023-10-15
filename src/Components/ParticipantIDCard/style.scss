@@ -4,24 +4,59 @@
 
 .participantid {
   @include container(504, $white);
+
+  &__wrapper {
+    width: 100%;
+    height: remHandler(426);
+    margin-top: remHandler(20);
+    overflow-x: hidden;
+    overflow-y: auto;
+
+    &::-webkit-scrollbar {
+      width: remHandler(4);
+    }
+
+    &::-webkit-scrollbar-thumb {
+      display: block;
+      background-color: $gray-dark;
+      border-radius: remHandler(4);
+      height: 30px !important;
+    }
+  }
+
+  &__info {
+    width: 100%;
+    background-color: $gray;
+    border-radius: remHandler(2);
+    margin-bottom: remHandler(20);
+    padding: 0 remHandler(28) remHandler(16);
+
+    &-points {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: remHandler(48);
+    }
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
 }
 
-.title--modecolor {
-  color: $text50;
-}
+.title {
+  width: auto;
 
-.title--modecolor--purple {
-  color: $secondary;
-}
+  &--mode {
+    color: $text50;
+    font-family: $semibold;
+  }
 
-.participant-info {
-  background-color: $gray;
-  border-radius: 2px;
-  margin-top: 20px;
-  padding: 14px 28px;
-}
+  &--size12 {
+    color: $text50;
+  }
 
-.date-points {
-  display: flex;
-  justify-content: space-between;
+  &--purple {
+    color: $secondary;
+  }
 }
