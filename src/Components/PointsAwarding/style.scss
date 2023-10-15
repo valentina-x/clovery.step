@@ -3,7 +3,5 @@
 /* POINTS AWARDING STYLES */
 
 .pointsawardingform {
-	width: auto;
-	max-width: remHandler(660);
-	padding: remHandler(28) remHandler(36) remHandler(60);
+	@include container(396, $white);
 }

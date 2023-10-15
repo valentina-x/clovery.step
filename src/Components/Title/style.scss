@@ -1,8 +1,9 @@
-@import "../../Assets/scss/default-import";
+@import '../../Assets/scss/default-import';
 
 /* TITLE STYLES */
 
 .title {
+	width: 100%;
 	font-size: remHandler(32);
 
 	&--size28 {
@@ -20,7 +21,6 @@
 	}
 
 	&--size16r {
-		color: $text;
 		font-size: remHandler(16);
 	}
 
@@ -33,11 +33,23 @@
 		font-size: remHandler(12);
 	}
 
+	&--mb2 {
+		margin-bottom: remHandler(2);
+	}
+
 	&--mb8 {
 		margin-bottom: remHandler(8);
 	}
 
+	&--mb18 {
+		margin-bottom: remHandler(18);
+	}
+
 	&--mb28 {
 		margin-bottom: remHandler(28);
+	}
+
+	&--mb44 {
+		margin-bottom: remHandler(44);
 	}
 }

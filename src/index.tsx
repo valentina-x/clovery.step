@@ -4,10 +4,6 @@ import './Assets/js/sprite';
 import './Assets/scss/base.scss';
 import App from './Components/App/index';
 
-const root = ReactDOM.createRoot(
-  document.getElementById('root') as HTMLElement
-)
+const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
 
-root.render(
-  <App />
-)
+root.render(<App />);

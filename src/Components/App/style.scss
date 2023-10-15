@@ -2,14 +2,20 @@
 
 /* APP STYLES */
 
+.App {
+	width: 100%;
+	max-width: 86.47%;
+	height: 100%;
+	background-color: #FDFDFD;
+	padding: remHandler(28) remHandler(62) remHandler(37);
+	margin: 0 0 0 auto;
+}
+
 .container {
-	max-width: remHandler(1280);
-	margin: remHandler(20) auto;
-	padding: remHandler(20);
-	background-color: #aa4444;
+	width: 100%;
 	display: flex;
 	align-items: flex-start;
-	color: $white;
+	flex-wrap: wrap;
 }
 
 .margin {
@@ -23,5 +29,9 @@
 
 	&--mt12mb12 {
 		margin: remHandler(12) 0;
+	}
+
+	&--mr32 {
+		margin-right: remHandler(32);
 	}
 }

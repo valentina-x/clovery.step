@@ -1,13 +1,24 @@
 @use 'sass:math';
 
 @function remHandler($size) {
-	@return math.div($size, 16) + rem;
+	@return math.div($size, 16)+rem;
 }
 
 @function vwHandler($x) {
-	@return math.div($x, 14.4) + vw;
+	@return math.div($x, 14.4)+vw;
 }
 
-@function prcHandler($x,$y, $symbol) {
-	@return math.div($x, $y) + $symbol;
+@function prcHandler($x, $y, $symbol) {
+	@return math.div($x, $y)+$symbol;
+}
+
+@mixin container($width, $bgcolor) {
+	width: 100%;
+	max-width: remHandler($width);
+	height: remHandler(696);
+	padding: remHandler(28) remHandler(36) remHandler(60);
+	background-color: $bgcolor;
+	box-shadow: 0px remHandler(2) remHandler(100) #F0F0F0;
+	border-radius: remHandler(12);
+	overflow: hidden;
 }
