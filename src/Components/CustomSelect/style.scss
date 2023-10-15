@@ -20,7 +20,7 @@
 		justify-content: space-between;
 		background-color: $white;
 		cursor: pointer;
-		padding: 0 remHandler(14) 0 remHandler(6);
+		padding: 0 remHandler(14) 0 remHandler(8);
 		border: 1px solid $gray-dark;
 		border-radius: remHandler(2);
 		box-sizing: border-box;
@@ -31,6 +31,7 @@
 		}
 
 		& input {
+			width: 100%;
 			border: none;
 			padding: 0;
 			margin: 0;
@@ -40,7 +41,6 @@
 			background-color: transparent;
 
 			&::placeholder {
-				color: $gray-dark;
 				font-size: remHandler(16);
 				transition: all 0.6s;
 			}
@@ -91,7 +91,6 @@
 
 	&__list {
 		width: 100%;
-		padding: remHandler(50);
 		background-color: $white;
 		position: absolute;
 		left: 0;
@@ -100,14 +99,16 @@
 		opacity: 0;
 		visibility: hidden;
 		box-sizing: border-box;
-		padding: remHandler(20);
+		padding: remHandler(10) 0;
 		box-shadow: 3px 10px 20px rgba(230, 230, 230, 0.5);
 		border-radius: 4px;
+		pointer-events: none;
 		transition: all 0.6s;
 
 		&.active {
 			opacity: 1;
 			visibility: visible;
+			pointer-events: inherit;
 		}
 
 		& input {
@@ -126,9 +127,12 @@
 			align-items: center;
 			position: relative;
 			height: remHandler(40);
-			margin-bottom: remHandler(14);
 			cursor: pointer;
 			transition: all 0.6s;
+
+			& * {
+				pointer-events: none;
+			}
 
 			& svg {
 				width: remHandler(24);
@@ -155,5 +159,12 @@
 				}
 			}
 		}
+	}
+}
+
+.dopinputs {
+	&_hidden {
+		opacity: 0;
+		pointer-events: none;
 	}
 }

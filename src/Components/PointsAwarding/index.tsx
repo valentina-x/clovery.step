@@ -28,9 +28,7 @@ export default function PointsAwarding({ onSubmit }: IPointsAwardingProps) {
 
   return (
     <form className='pointsawardingform' onSubmit={handleSubmit}>
-      <Title className='title title--size20 title--mb28'>
-        Начисление баллов
-      </Title>
+      <Title className='title title--size20 title--mb28'>Начисление баллов</Title>
 
       <label className='margin margin--mb32'>
         <Title className='title title--size14 title--mb8'>Кому</Title>
@@ -43,16 +41,12 @@ export default function PointsAwarding({ onSubmit }: IPointsAwardingProps) {
       </label>
 
       <label className='margin margin--mb32'>
-        <Title className='title title--size14 title--mb8'>
-          Активность / конкурс
-        </Title>
+        <Title className='title title--size14 title--mb8'>Активность / конкурс</Title>
       </label>
 
       <label className='margin margin--mb32'>
-        <Title className='title title--size14 title--mb8'>
-          Причина начисления
-        </Title>
-        <CustomSelect />
+        <Title className='title title--size14 title--mb8'>Причина начисления</Title>
+        <CustomSelect showAdditionalInputs={true} items={...} type={...} onSelect={...} />
       </label>
 
       <Button className='button button--purple button--alignment' type='submit'>

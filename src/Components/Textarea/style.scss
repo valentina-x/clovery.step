@@ -26,10 +26,18 @@
 	&--textarea {
 		width: 100%;
 		height: remHandler(116);
+		font-family: $regular;
 		resize: none;
+
+		&::placeholder {
+			color: $text50;
+			font-size: remHandler(16);
+			font-family: $regular;
+		}
 	}
 
 	&--textarea {
 		padding: remHandler(10) remHandler(8);
 	}
+
 }
