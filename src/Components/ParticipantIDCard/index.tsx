@@ -54,36 +54,6 @@ export default function ParticipantID({ onSubmit }: IParticipantIDProps) {
           <Title className='title title--size12 title--mt9'>Причина начисления:</Title>
           <Title className='title title--size16r'>Победа, оценка работ</Title>
         </div>
-        <div className='participantid__info'>
-          <div className='participantid__info-points'>
-            <Title className='title title--size14'>17 октября 2023, 12:00</Title>
-            <Title className='title title--size16r title--purple title--mode'>+25 баллов</Title>
-          </div>
-          <Title className='title title--size12 title--mt9'>Активность:</Title>
-          <Title className='title title--size16r title--mb20'>Конкурс логотипов для Шага</Title>
-          <Title className='title title--size12 title--mt9'>Причина начисления:</Title>
-          <Title className='title title--size16r'>Победа, оценка работ</Title>
-        </div>
-        <div className='participantid__info'>
-          <div className='participantid__info-points'>
-            <Title className='title title--size14'>17 октября 2023, 12:00</Title>
-            <Title className='title title--size16r title--purple title--mode'>+25 баллов</Title>
-          </div>
-          <Title className='title title--size12 title--mt9'>Активность:</Title>
-          <Title className='title title--size16r title--mb20'>Конкурс логотипов для Шага</Title>
-          <Title className='title title--size12 title--mt9'>Причина начисления:</Title>
-          <Title className='title title--size16r'>Победа, оценка работ</Title>
-        </div>
-        <div className='participantid__info'>
-          <div className='participantid__info-points'>
-            <Title className='title title--size14'>17 октября 2023, 12:00</Title>
-            <Title className='title title--size16r title--purple title--mode'>+25 баллов</Title>
-          </div>
-          <Title className='title title--size12 title--mt9'>Активность:</Title>
-          <Title className='title title--size16r title--mb20'>Конкурс логотипов для Шага</Title>
-          <Title className='title title--size12 title--mt9'>Причина начисления:</Title>
-          <Title className='title title--size16r'>Победа, оценка работ</Title>
-        </div>
       </div>
     </div>
   );

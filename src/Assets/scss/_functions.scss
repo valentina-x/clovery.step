@@ -15,7 +15,7 @@
 @mixin container($width, $bgcolor) {
 	width: 100%;
 	max-width: remHandler($width);
-	height: remHandler(696);
+	height: remHandler(720);
 	padding: remHandler(28) remHandler(36) remHandler(60);
 	background-color: $bgcolor;
 	box-shadow: 0px remHandler(2) remHandler(100) #F0F0F0;

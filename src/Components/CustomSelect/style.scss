@@ -2,7 +2,6 @@
 
 /* CUSTOM SELECT STYLES */
 
-
 .selection {
 	display: flex;
 	align-items: flex-start;
@@ -99,7 +98,7 @@
 		opacity: 0;
 		visibility: hidden;
 		box-sizing: border-box;
-		padding: remHandler(10) 0;
+		padding: remHandler(4) 0;
 		box-shadow: 3px 10px 20px rgba(230, 230, 230, 0.5);
 		border-radius: 4px;
 		pointer-events: none;
