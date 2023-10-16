@@ -114,7 +114,7 @@ export default function PointsAwarding({ onSubmit }: IPointsAwardingProps) {
         />
       </label>
 
-      <Button className='button button--purple button--alignment' type='submit'>
+      <Button className='button button--purple button--alignment button_disabled' type='submit'>
         Начислить
       </Button>
     </form>

@@ -26,7 +26,7 @@
 
   &__info {
     width: 100%;
-    background-color: $gray;
+    background-color: $light-gray;
     border-radius: remHandler(2);
     margin-bottom: remHandler(20);
     padding: 0 remHandler(28) remHandler(16);
@@ -36,6 +36,10 @@
       align-items: center;
       justify-content: space-between;
       height: remHandler(48);
+
+      & .title {
+        width: auto;
+      }
     }
 
     &:last-child {
@@ -45,8 +49,6 @@
 }
 
 .title {
-  width: auto;
-
   &--mode {
     color: $text50;
     font-family: $semibold;

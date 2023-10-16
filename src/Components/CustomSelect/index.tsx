@@ -100,7 +100,7 @@ const CustomSelect: React.FC<CustomSelectProps> = ({
 
   return (
     <>
-      <div ref={selectionRef} className='selection margin--mb32'>
+      <div ref={selectionRef} className='selection margin--mb20'>
         <div className='selection__item'>
           <div className='selection__input' onClick={handleClick}>
             <input
@@ -136,7 +136,7 @@ const CustomSelect: React.FC<CustomSelectProps> = ({
       </div>
       {showAdditionalInputs && (
         <div className='dopinputs dopinputs_hidden'>
-          <label className='margin margin--mb32'>
+          <label className='margin margin--mb20'>
             <Title className='title title--size14 title--mb8'>Введите причину начисления</Title>
             <Input
               type='text'

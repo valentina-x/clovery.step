@@ -1,0 +1,67 @@
+@import '../../Assets/scss/default-import';
+
+/* PARTICIPANT POINTS STYLES */
+
+.points {
+  @include container(604, $white);
+
+  &__container {
+    width: 100%;
+    height: 100%;
+    max-height: remHandler(468);
+    overflow: hidden;
+  }
+
+  &__item {
+    width: remHandler(180);
+    height: remHandler(44);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &__header {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: $light-gray;
+    margin-bottom: remHandler(16);
+    border-bottom: 1px solid $text50;
+    border-radius: remHandler(2);
+  }
+
+  &__row {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: remHandler(2);
+    background-color: $light-gray;
+    margin-bottom: remHandler(16);
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+}
+
+.title {
+
+  &--mode {
+    color: $text50;
+    font-family: $semibold;
+  }
+
+  &--size12 {
+    color: $text50;
+  }
+
+  &--purple {
+    color: $secondary;
+  }
+
+  &--gray {
+    color: $text50;
+  }
+}

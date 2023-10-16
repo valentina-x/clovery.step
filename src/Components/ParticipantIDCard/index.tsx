@@ -39,7 +39,7 @@ export default function ParticipantID({ onSubmit }: IParticipantIDProps) {
           placeholder='8347573687739012'
           required
         />
-        <Button className='button button--purple button--alignment' type='submit'>
+        <Button className='button button--purple button--alignment button_disabled' type='submit'>
           Поиск
         </Button>
       </form>
