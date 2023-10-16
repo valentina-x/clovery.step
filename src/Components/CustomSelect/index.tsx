@@ -75,8 +75,8 @@ const CustomSelect: React.FC<CustomSelectProps> = ({
         ) as HTMLInputElement;
         if (input) {
           if (prev.length === 0) {
-            input.value = ''; // Устанавливаем пустую строку, если нет выбранных элементов
-            input.placeholder = 'Выберите из списка'; // Восстанавливаем начальный текст
+            input.value = '';
+            input.placeholder = 'Выберите из списка';
           } else {
             input.value = prev.join(', ');
             input.placeholder = prev.join(', ');
