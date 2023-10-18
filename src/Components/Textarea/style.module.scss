@@ -4,36 +4,32 @@
 
 .input {
 	width: 100%;
-	box-sizing: border-box;
-}
-
-.input {
+	height: remHandler(44);
 	color: $text;
 	font-size: remHandler(16);
-	transition: all 0.6s;
 
 	&::placeholder {
 		color: $text50;
 		font-family: $regular;
-	}
-
-	&:focus {
-		border-color: $primary;
-	}
-
-	&:hover {
-		border-color: $primary;
 	}
 }
 
 .input {
 	border: remHandler(1) solid $gray-dark;
 	border-radius: remHandler(2);
-}
 
-.input {
-	&--text {
-		height: remHandler(44);
-		padding: 0 remHandler(8);
+	&_textarea {
+		width: 100%;
+		height: remHandler(116);
+		font-family: $regular;
+		padding: remHandler(10) remHandler(8);
+		resize: none;
+
+		&::placeholder {
+			color: $text50;
+			font-size: remHandler(16);
+			font-family: $regular;
+		}
 	}
+
 }

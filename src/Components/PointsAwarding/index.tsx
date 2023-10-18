@@ -1,11 +1,11 @@
 import React from 'react';
-import './style.scss';
+import styles from './style.module.scss';
 
 /* components */
-import Button from '../Button/index';
-import Title from '../Title/index';
-import Input from '../Input/index';
-import Textarea from '../Textarea/index';
+import Button, { ButtonStyles } from '../Button/index';
+import Title, { TitleStyles } from '../Title/index';
+import Input, { InputStyles } from '../Input/index';
+import Textarea, { TextareaStyles } from '../Textarea';
 import CustomSelect from '../CustomSelect/index';
 
 /* types data form */
@@ -28,24 +28,36 @@ export default function PointsAwarding({ onSubmit }: IPointsAwardingProps) {
   };
 
   return (
-    <form className='pointsawardingform margin margin--mr32' onSubmit={handleSubmit}>
-      <Title className='title title--size20 title--mb28'>Начисление баллов</Title>
+    <form className={`${styles.pointsawardingform} ${styles.margin_mr32}`} onSubmit={handleSubmit}>
+      <Title
+        className={`${TitleStyles.title} ${TitleStyles.title_size20} ${TitleStyles.title_mb28}`}
+      >
+        Начисление баллов
+      </Title>
 
-      <label className='margin margin--mb32'>
-        <Title className='title title--size14 title--mb8'>Кому</Title>
+      <label className={`${styles.margin_mb32}`}>
+        <Title
+          className={`${TitleStyles.title} ${TitleStyles.title_size14} ${TitleStyles.title_mb8}`}
+        >
+          Кому
+        </Title>
         <Textarea
-          className='input input--textarea'
+          className={`${TextareaStyles.input} ${TextareaStyles.input_textarea}`}
           name='id'
           placeholder='Введите id пользователя'
           required
         />
       </label>
 
-      <label className='margin margin--mb32'>
-        <Title className='title title--size14 title--mb8'>Активность / конкурс</Title>
+      <label className={`${styles.margin_mb32}`}>
+        <Title
+          className={`${TitleStyles.title} ${TitleStyles.title_size14} ${TitleStyles.title_mb8}`}
+        >
+          Активность / конкурс
+        </Title>
         <Input
           type='text'
-          className='input input--text'
+          className={`${InputStyles.input} ${InputStyles.input_text}`}
           name='activity'
           placeholder='Введите текст'
           required
@@ -61,7 +73,7 @@ export default function PointsAwarding({ onSubmit }: IPointsAwardingProps) {
               id: 'journalism',
               text: 'Журналистика',
               type: 'radio',
-              class: 'selection__list-item_radio',
+              class: 'selection__listitem_radio',
             },
             {
               value: 'design',
@@ -69,7 +81,7 @@ export default function PointsAwarding({ onSubmit }: IPointsAwardingProps) {
               id: 'design',
               text: 'Дизайн',
               type: 'radio',
-              class: 'selection__list-item_radio',
+              class: 'selection__listitem_radio',
             },
             {
               value: 'copywriting',
@@ -77,14 +89,18 @@ export default function PointsAwarding({ onSubmit }: IPointsAwardingProps) {
               id: 'copywriting',
               text: 'Копирайтинг',
               type: 'radio',
-              class: 'selection__list-item_radio',
+              class: 'selection__listitem_radio',
             },
           ]}
         /> */}
       </label>
 
-      <label className='margin'>
-        <Title className='title title--size14 title--mb8'>Причина начисления</Title>
+      <label>
+        <Title
+          className={`${TitleStyles.title} ${TitleStyles.title_size14} ${TitleStyles.title_mb8}`}
+        >
+          Причина начисления
+        </Title>
         <CustomSelect
           nameInputMain='reason_all'
           showAdditionalInputs={true}
@@ -103,7 +119,13 @@ export default function PointsAwarding({ onSubmit }: IPointsAwardingProps) {
               text: 'Призовое место (+10)',
               type: 'checkbox',
             },
-            { value: '20', name: 'victory', id: 'victory', text: 'Победа (+20)', type: 'checkbox' },
+            {
+              value: '20',
+              name: 'victory',
+              id: 'victory',
+              text: 'Победа (+20)',
+              type: 'checkbox',
+            },
             {
               value: '5',
               name: 'evaluation',
@@ -117,13 +139,16 @@ export default function PointsAwarding({ onSubmit }: IPointsAwardingProps) {
               id: 'other',
               text: 'Другое...',
               type: 'checkbox',
-              class: 'selection__list-item--other',
+              class: 'selection__listitem_other',
             },
           ]}
         />
       </label>
 
-      <Button className='button button--purple button--alignment button_disabled' type='submit'>
+      <Button
+        className={`${ButtonStyles.button} ${ButtonStyles.button_purple} ${ButtonStyles.button_alignment} ${ButtonStyles.button_disabled}`}
+        type='submit'
+      >
         Начислить
       </Button>
     </form>

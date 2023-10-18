@@ -31,34 +31,42 @@
     margin-bottom: remHandler(20);
     padding: 0 remHandler(28) remHandler(16);
 
-    &-points {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      height: remHandler(48);
-
-      & .title {
-        width: auto;
-      }
-    }
-
     &:last-child {
       margin-bottom: 0;
     }
   }
+
+  &__infopoints {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: remHandler(48);
+
+  }
 }
 
 .title {
-  &--mode {
+  cursor: initial;
+
+  &_mode {
     color: $text50;
     font-family: $semibold;
   }
 
-  &--size12 {
+  &_widthauto {
+    width: auto;
+  }
+
+  &_size12 {
+    font-size: remHandler(12);
     color: $text50;
   }
 
-  &--purple {
+  &_purple {
     color: $secondary;
   }
+}
+
+.marginMb12 {
+  margin-bottom: remHandler(12);
 }

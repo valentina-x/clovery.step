@@ -1,8 +1,8 @@
 import React, { useState, useRef, useEffect } from 'react';
-import './style.scss';
+import styles from './style.module.scss';
 
-import Input from '../Input/index';
-import Title from '../Title/index';
+import Input, { InputStyles } from '../Input/index';
+import Title, { TitleStyles } from '../Title/index';
 
 interface CustomSelectProps {
   nameInputMain: string;
@@ -23,10 +23,14 @@ const CustomSelect: React.FC<CustomSelectProps> = ({
     const handleDocumentClick = (event: MouseEvent) => {
       const target = event.target as Node;
       if (selectionRef.current && !selectionRef.current.contains(target)) {
-        const input = selectionRef.current.querySelector('.selection__input') as HTMLElement;
-        const list = selectionRef.current.querySelector('.selection__list') as HTMLElement;
-        list.classList.remove('active');
-        input.classList.remove('active');
+        const input = selectionRef.current.querySelector(
+          `.${styles.selection__input}`,
+        ) as HTMLElement;
+        const list = selectionRef.current.querySelector(
+          `.${styles.selection__list}`,
+        ) as HTMLElement;
+        list.classList.remove(`${styles.active}`);
+        input.classList.remove(`${styles.active}`);
       }
     };
 
@@ -39,13 +43,13 @@ const CustomSelect: React.FC<CustomSelectProps> = ({
 
   const handleClick = (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
     const input = event.currentTarget as HTMLDivElement;
-    if (input?.classList.contains('selection__input')) {
-      input?.classList.toggle('active');
+    if (input?.classList.contains(`${styles.selection__input}`)) {
+      input?.classList.toggle(`${styles.active}`);
       const list = (input.parentElement as HTMLElement).querySelector(
-        '.selection__list',
+        `.${styles.selection__list}`,
       ) as HTMLElement;
       if (list) {
-        list.classList.toggle('active');
+        list.classList.toggle(`${styles.active}`);
       }
     }
   };
@@ -58,9 +62,11 @@ const CustomSelect: React.FC<CustomSelectProps> = ({
     if (labelText) {
       setSelectedItems((prev) => {
         const isAlreadySelected = prev.includes(labelText);
-        if (labelText && label.classList.contains('selection__list-item_radio')) {
-          parentLabel.classList.remove('active');
-          (parentList.querySelector('.selection__input') as HTMLElement).classList.remove('active');
+        if (labelText && label.classList.contains(`${styles.selection__listitem_radio}`)) {
+          parentLabel.classList.remove(`${styles.active}`);
+          (parentList.querySelector(`.${styles.selection__input}`) as HTMLElement).classList.remove(
+            `${styles.active}`,
+          );
           return isAlreadySelected ? prev : [labelText];
         } else {
           return isAlreadySelected
@@ -71,7 +77,7 @@ const CustomSelect: React.FC<CustomSelectProps> = ({
 
       setSelectedItems((prev) => {
         const input = parentList.querySelector(
-          `.selection__input input[name='${nameInputMain}']`,
+          `.${styles.selection__input} input[name='${nameInputMain}']`,
         ) as HTMLInputElement;
         if (input) {
           if (prev.length === 0) {
@@ -86,23 +92,23 @@ const CustomSelect: React.FC<CustomSelectProps> = ({
       });
     }
 
-    if (label.classList.contains('selection__list-item--other')) {
+    if (label.classList.contains(`selection__listitem_other`)) {
       const list = label.parentNode as HTMLElement;
-      const dopinputs = document.querySelector('.dopinputs') as HTMLElement;
-      list.classList.remove('active');
-      if (dopinputs.classList.contains('dopinputs_hidden')) {
-        dopinputs.classList.remove('dopinputs_hidden');
+      const dopinputs = document.querySelector(`.${styles.dopinputs}`) as HTMLElement;
+      list.classList.remove(`${styles.active}`);
+      if (dopinputs.classList.contains(`${styles.dopinputs_hidden}`)) {
+        dopinputs.classList.remove(`${styles.dopinputs_hidden}`);
       } else {
-        dopinputs.classList.add('dopinputs_hidden');
+        dopinputs.classList.add(`${styles.dopinputs_hidden}`);
       }
     }
   };
 
   return (
     <>
-      <div ref={selectionRef} className='selection margin--mb20'>
-        <div className='selection__item'>
-          <div className='selection__input' onClick={handleClick}>
+      <div ref={selectionRef} className={styles.selection}>
+        <div className={styles.selection__item}>
+          <div className={styles.selection__input} onClick={handleClick}>
             <input
               type='text'
               name={nameInputMain}
@@ -115,13 +121,13 @@ const CustomSelect: React.FC<CustomSelectProps> = ({
             </svg>
           </div>
 
-          <div className='selection__list'>
+          <div className={styles.selection__list}>
             {items.map((item) => (
               <React.Fragment key={item.id}>
                 <input type={item.type} value={item.value} name={item.name} id={item.id} />
                 <label
                   htmlFor={item.id}
-                  className={`selection__list-item ${item.class}`}
+                  className={`${styles.selection__listitem} ${item.class ? item.class : ''}`}
                   onClick={handleLabelClick}
                 >
                   <svg>
@@ -135,21 +141,29 @@ const CustomSelect: React.FC<CustomSelectProps> = ({
         </div>
       </div>
       {showAdditionalInputs && (
-        <div className='dopinputs dopinputs_hidden'>
-          <label className='margin margin--mb20'>
-            <Title className='title title--size14 title--mb8'>Введите причину начисления</Title>
+        <div className={`${styles.dopinputs} ${styles.dopinputs_hidden}`}>
+          <label className={`${styles.margin}`}>
+            <Title
+              className={`${TitleStyles.title} ${TitleStyles.title_size14} ${TitleStyles.title_mb8}`}
+            >
+              Введите причину начисления
+            </Title>
             <Input
               type='text'
-              className='input input--text'
+              className={`${InputStyles.input} ${InputStyles.input_text}`}
               name='reason'
               placeholder='Введите текст'
             />
           </label>
           <label>
-            <Title className='title title--size14 title--mb8'>Количество баллов</Title>
+            <Title
+              className={`${TitleStyles.title} ${TitleStyles.title_size14} ${TitleStyles.title_mb8}`}
+            >
+              Количество баллов
+            </Title>
             <Input
               type='number'
-              className='input input--text'
+              className={`${InputStyles.input} ${InputStyles.input_text}`}
               name='points'
               placeholder='0'
               min='5'

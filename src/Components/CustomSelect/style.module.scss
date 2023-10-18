@@ -5,6 +5,7 @@
 .selection {
 	display: flex;
 	align-items: flex-start;
+	margin-bottom: remHandler(20);
 
 	&__item {
 		width: 100%;
@@ -120,50 +121,56 @@
 				}
 			}
 		}
+	}
 
-		&-item {
-			display: flex;
-			align-items: center;
-			position: relative;
-			height: remHandler(40);
-			cursor: pointer;
-			transition: all 0.6s;
+	&__listitem {
+		display: flex;
+		align-items: center;
+		position: relative;
+		height: remHandler(40);
+		cursor: pointer;
+		transition: all 0.6s;
 
-			& * {
-				pointer-events: none;
-			}
+		& * {
+			pointer-events: none;
+		}
+
+		& svg {
+			width: remHandler(24);
+			height: remHandler(24);
+			margin-left: remHandler(10);
+			margin-right: remHandler(16);
+			opacity: 0;
+			transition: opacity 0.6s;
+		}
+
+		& span {
+			font-size: remHandler(14);
+		}
+
+		&:last-child {
+			margin-bottom: 0;
+		}
+
+		&:hover {
+			background-color: $hover;
 
 			& svg {
-				width: remHandler(24);
-				height: remHandler(24);
-				margin-left: remHandler(10);
-				margin-right: remHandler(16);
-				opacity: 0;
-				transition: opacity 0.6s;
-			}
-
-			& span {
-				font-size: remHandler(14);
-			}
-
-			&:last-child {
-				margin-bottom: 0;
-			}
-
-			&:hover {
-				background-color: $hover;
-
-				& svg {
-					opacity: 1;
-				}
+				opacity: 1;
 			}
 		}
 	}
 }
 
 .dopinputs {
+	cursor: initial;
+
 	&_hidden {
 		opacity: 0;
 		pointer-events: none;
 	}
+}
+
+.margin {
+	margin-bottom: remHandler(20);
 }

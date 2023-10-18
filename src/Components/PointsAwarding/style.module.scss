@@ -1,0 +1,29 @@
+@import "../../Assets/scss/default-import";
+
+/* POINTS AWARDING STYLES */
+
+.pointsawardingform {
+	@include container(506, $white);
+}
+
+.margin {
+	&_mb12 {
+		margin-bottom: remHandler(12);
+	}
+
+	&_mb32 {
+		margin-bottom: remHandler(32);
+	}
+
+	&_mt12mb12 {
+		margin: remHandler(12) 0;
+	}
+
+	&_mr32 {
+		margin-right: remHandler(32);
+	}
+
+	&_mb20 {
+		margin-bottom: remHandler(20);
+	}
+}

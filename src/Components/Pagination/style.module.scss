@@ -24,6 +24,7 @@
     text-align: center;
     border: 1px solid transparent;
     color: $gray-dark;
+    font-size: remHandler(14);
     width: remHandler(32);
     height: remHandler(32);
     border-radius: 2px;
@@ -57,11 +58,5 @@
     &:hover {
       cursor: pointer;
     }
-  }
-}
-
-.title {
-  &--color {
-    color: $gray-dark;
   }
 }

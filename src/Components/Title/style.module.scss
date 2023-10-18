@@ -6,58 +6,58 @@
 	width: 100%;
 	font-size: remHandler(32);
 
-	&--size28 {
+	&_size28 {
 		font-size: remHandler(28);
 		font-weight: 600;
 	}
 
-	&--size20 {
+	&_size20 {
 		font-size: remHandler(20);
 	}
 
-	&--size16s {
+	&_size16s {
 		font-size: remHandler(16);
 		font-family: $semibold;
 	}
 
-	&--size16r {
+	&_size16r {
 		font-size: remHandler(16);
 	}
 
-	&--size14 {
+	&_size14 {
 		color: $text70;
 		font-size: remHandler(14);
 	}
 
-	&--size12 {
+	&_size12 {
 		font-size: remHandler(12);
 	}
 
-	&--mb2 {
+	&_mb2 {
 		margin-bottom: remHandler(2);
 	}
 
-	&--mt6 {
+	&_mt6 {
 		margin-top: remHandler(6);
 	}
 
-	&--mb8 {
+	&_mb8 {
 		margin-bottom: remHandler(8);
 	}
 
-	&--mb18 {
+	&_mb18 {
 		margin-bottom: remHandler(18);
 	}
 
-	&--mb28 {
+	&_mb28 {
 		margin-bottom: remHandler(28);
 	}
 
-	&--mb20 {
+	&_mb20 {
 		margin-bottom: remHandler(20);
 	}
 
-	&--mb44 {
+	&_mb44 {
 		margin-bottom: remHandler(44);
 	}
 }
