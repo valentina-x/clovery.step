@@ -6,7 +6,7 @@ import './style.scss';
 import Title from '../Title/index';
 import Pagination from '../Pagination';
 
-export default function ParticipantPoints() {
+export default function TablePoints() {
   return (
     <div className='points margin--mr32'>
       <Title className='title title--size20 title--mb28'>Баллы участников</Title>

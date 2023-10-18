@@ -4,6 +4,7 @@ import './style.scss';
 /* components */
 import Button from '../Button/index';
 import Title from '../Title/index';
+import Input from '../Input/index';
 import Textarea from '../Textarea/index';
 import CustomSelect from '../CustomSelect/index';
 
@@ -42,7 +43,15 @@ export default function PointsAwarding({ onSubmit }: IPointsAwardingProps) {
 
       <label className='margin margin--mb32'>
         <Title className='title title--size14 title--mb8'>Активность / конкурс</Title>
-        <CustomSelect
+        <Input
+          type='text'
+          className='input input--text'
+          name='activity'
+          placeholder='Введите текст'
+          required
+        />
+
+        {/* <CustomSelect
           nameInputMain='activity'
           showAdditionalInputs={false}
           items={[
@@ -71,7 +80,7 @@ export default function PointsAwarding({ onSubmit }: IPointsAwardingProps) {
               class: 'selection__list-item_radio',
             },
           ]}
-        />
+        /> */}
       </label>
 
       <label className='margin'>
