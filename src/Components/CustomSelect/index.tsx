@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import styles from './style.module.scss';
+import CustomSelectStyles from './style.module.scss';
 
 import Input, { InputStyles } from '../Input/index';
 import Title, { TitleStyles } from '../Title/index';
@@ -9,12 +9,17 @@ interface CustomSelectProps {
   items: { value: string; name: string; id: string; text: string; type: string; class?: string }[];
   // onSelect: (selectedItems: string[]) => void;
   showAdditionalInputs?: boolean;
+  error: {
+    message: string;
+    hasError: boolean;
+  };
 }
 
 const CustomSelect: React.FC<CustomSelectProps> = ({
   nameInputMain,
   items,
   showAdditionalInputs,
+  error,
 }) => {
   const [selectedItems, setSelectedItems] = useState<string[]>([]);
   const selectionRef = useRef<HTMLDivElement>(null);
@@ -24,13 +29,13 @@ const CustomSelect: React.FC<CustomSelectProps> = ({
       const target = event.target as Node;
       if (selectionRef.current && !selectionRef.current.contains(target)) {
         const input = selectionRef.current.querySelector(
-          `.${styles.selection__input}`,
+          `.${CustomSelectStyles.selection__input}`,
         ) as HTMLElement;
         const list = selectionRef.current.querySelector(
-          `.${styles.selection__list}`,
+          `.${CustomSelectStyles.selection__list}`,
         ) as HTMLElement;
-        list.classList.remove(`${styles.active}`);
-        input.classList.remove(`${styles.active}`);
+        list.classList.remove(`${CustomSelectStyles.active}`);
+        input.classList.remove(`${CustomSelectStyles.active}`);
       }
     };
 
@@ -43,13 +48,13 @@ const CustomSelect: React.FC<CustomSelectProps> = ({
 
   const handleClick = (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
     const input = event.currentTarget as HTMLDivElement;
-    if (input?.classList.contains(`${styles.selection__input}`)) {
-      input?.classList.toggle(`${styles.active}`);
+    if (input?.classList.contains(`${CustomSelectStyles.selection__input}`)) {
+      input?.classList.toggle(`${CustomSelectStyles.active}`);
       const list = (input.parentElement as HTMLElement).querySelector(
-        `.${styles.selection__list}`,
+        `.${CustomSelectStyles.selection__list}`,
       ) as HTMLElement;
       if (list) {
-        list.classList.toggle(`${styles.active}`);
+        list.classList.toggle(`${CustomSelectStyles.active}`);
       }
     }
   };
@@ -62,11 +67,14 @@ const CustomSelect: React.FC<CustomSelectProps> = ({
     if (labelText) {
       setSelectedItems((prev) => {
         const isAlreadySelected = prev.includes(labelText);
-        if (labelText && label.classList.contains(`${styles.selection__listitem_radio}`)) {
-          parentLabel.classList.remove(`${styles.active}`);
-          (parentList.querySelector(`.${styles.selection__input}`) as HTMLElement).classList.remove(
-            `${styles.active}`,
-          );
+        if (
+          labelText &&
+          label.classList.contains(`${CustomSelectStyles.selection__listitem_radio}`)
+        ) {
+          parentLabel.classList.remove(`${CustomSelectStyles.active}`);
+          (
+            parentList.querySelector(`.${CustomSelectStyles.selection__input}`) as HTMLElement
+          ).classList.remove(`${CustomSelectStyles.active}`);
           return isAlreadySelected ? prev : [labelText];
         } else {
           return isAlreadySelected
@@ -77,7 +85,7 @@ const CustomSelect: React.FC<CustomSelectProps> = ({
 
       setSelectedItems((prev) => {
         const input = parentList.querySelector(
-          `.${styles.selection__input} input[name='${nameInputMain}']`,
+          `.${CustomSelectStyles.selection__input} input[name='${nameInputMain}']`,
         ) as HTMLInputElement;
         if (input) {
           if (prev.length === 0) {
@@ -92,42 +100,45 @@ const CustomSelect: React.FC<CustomSelectProps> = ({
       });
     }
 
-    if (label.classList.contains(`selection__listitem_other`)) {
+    if (label.classList.contains(`${CustomSelectStyles.selection__listitem_other}`)) {
       const list = label.parentNode as HTMLElement;
-      const dopinputs = document.querySelector(`.${styles.dopinputs}`) as HTMLElement;
-      list.classList.remove(`${styles.active}`);
-      if (dopinputs.classList.contains(`${styles.dopinputs_hidden}`)) {
-        dopinputs.classList.remove(`${styles.dopinputs_hidden}`);
+      const dopinputs = document.querySelector(`.${CustomSelectStyles.dopinputs}`) as HTMLElement;
+      list.classList.remove(`${CustomSelectStyles.active}`);
+      if (dopinputs.classList.contains(`${CustomSelectStyles.dopinputs_hidden}`)) {
+        dopinputs.classList.remove(`${CustomSelectStyles.dopinputs_hidden}`);
       } else {
-        dopinputs.classList.add(`${styles.dopinputs_hidden}`);
+        dopinputs.classList.add(`${CustomSelectStyles.dopinputs_hidden}`);
       }
     }
   };
 
   return (
     <>
-      <div ref={selectionRef} className={styles.selection}>
-        <div className={styles.selection__item}>
-          <div className={styles.selection__input} onClick={handleClick}>
-            <input
-              type='text'
-              name={nameInputMain}
-              value=''
-              placeholder='Выберите из списка'
-              disabled
-            />
+      <div ref={selectionRef} className={CustomSelectStyles.selection}>
+        <div className={CustomSelectStyles.selection__item}>
+          <div
+            className={`${CustomSelectStyles.selection__input} ${
+              CustomSelectStyles.selection__input_disabled
+            } ${error && error.hasError ? CustomSelectStyles.error : ''}`}
+            onClick={handleClick}
+          >
+            <input type='text' name={nameInputMain} value='' placeholder='Выберите из списка' />
             <svg>
               <use xlinkHref='#s_chevron-down'></use>
             </svg>
           </div>
 
-          <div className={styles.selection__list}>
+          {error.hasError && <div className={CustomSelectStyles.error}>{error.message}</div>}
+
+          <div className={CustomSelectStyles.selection__list}>
             {items.map((item) => (
               <React.Fragment key={item.id}>
                 <input type={item.type} value={item.value} name={item.name} id={item.id} />
                 <label
                   htmlFor={item.id}
-                  className={`${styles.selection__listitem} ${item.class ? item.class : ''}`}
+                  className={`${CustomSelectStyles.selection__listitem} ${
+                    item.class ? item.class : ''
+                  }`}
                   onClick={handleLabelClick}
                 >
                   <svg>
@@ -141,8 +152,8 @@ const CustomSelect: React.FC<CustomSelectProps> = ({
         </div>
       </div>
       {showAdditionalInputs && (
-        <div className={`${styles.dopinputs} ${styles.dopinputs_hidden}`}>
-          <label className={`${styles.margin}`}>
+        <div className={`${CustomSelectStyles.dopinputs} ${CustomSelectStyles.dopinputs_hidden}`}>
+          <label className={`${CustomSelectStyles.margin}`}>
             <Title
               className={`${TitleStyles.title} ${TitleStyles.title_size14} ${TitleStyles.title_mb8}`}
             >
@@ -166,8 +177,6 @@ const CustomSelect: React.FC<CustomSelectProps> = ({
               className={`${InputStyles.input} ${InputStyles.input_text}`}
               name='points'
               placeholder='0'
-              min='5'
-              max='100'
             />
           </label>
         </div>
@@ -176,4 +185,5 @@ const CustomSelect: React.FC<CustomSelectProps> = ({
   );
 };
 
+export { CustomSelectStyles };
 export default CustomSelect;

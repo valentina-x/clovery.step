@@ -10,6 +10,7 @@
 	&__item {
 		width: 100%;
 		position: relative;
+		cursor: pointer;
 	}
 
 	&__input {
@@ -87,6 +88,10 @@
 				transform: rotate(180deg);
 			}
 		}
+
+		&_disabled {
+			pointer-events: none;
+		}
 	}
 
 	&__list {
@@ -159,8 +164,17 @@
 				opacity: 1;
 			}
 		}
+
+		&_other {
+			cursor: pointer;
+		}
+
+		&_radio {
+			cursor: pointer;
+		}
 	}
 }
+
 
 .dopinputs {
 	cursor: initial;
@@ -173,4 +187,19 @@
 
 .margin {
 	margin-bottom: remHandler(20);
+}
+
+.error {
+	color: $status-red;
+	font-size: remHandler(12);
+
+	&_pos {
+		position: absolute;
+		bottom: remHandler(-21);
+	}
+}
+
+textarea.error,
+input.error {
+	border-color: $status-red;
 }

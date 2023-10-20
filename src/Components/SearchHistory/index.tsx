@@ -53,7 +53,7 @@ export default function SearchHistory({ onSubmit }: ISearchHistoryProps) {
 
   async function postData(data: FormData): Promise<Array<any>> {
     try {
-      const response = await fetch('/article/formdata/post/user', {
+      const response = await fetch('/article/formdata/post/user/page=3&max=8', {
         method: 'POST',
         body: data,
       });
@@ -76,7 +76,7 @@ export default function SearchHistory({ onSubmit }: ISearchHistoryProps) {
   };
 
   return (
-    <div className={`${styles.participantid}`}>
+    <div className={`${styles.participantid} ${styles.title_mode}`}>
       <Title
         className={`${TitleStyles.title} ${TitleStyles.title_size20} ${TitleStyles.title_mb20}`}
       >

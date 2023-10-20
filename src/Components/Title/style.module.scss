@@ -60,4 +60,8 @@
 	&_mb44 {
 		margin-bottom: remHandler(44);
 	}
+
+	&_error {
+		color: $status-red;
+	}
 }

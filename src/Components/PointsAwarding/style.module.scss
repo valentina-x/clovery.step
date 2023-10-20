@@ -4,6 +4,10 @@
 
 .pointsawardingform {
 	@include container(506, $white);
+
+	& label {
+		position: relative;
+	}
 }
 
 .margin {
@@ -26,4 +30,19 @@
 	&_mb20 {
 		margin-bottom: remHandler(20);
 	}
+}
+
+.error {
+	color: $status-red;
+	font-size: remHandler(12);
+
+	&_pos {
+		position: absolute;
+		bottom: remHandler(-21);
+	}
+}
+
+textarea.error,
+input.error {
+	border-color: $status-red;
 }

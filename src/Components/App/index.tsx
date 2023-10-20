@@ -18,7 +18,6 @@ function App() {
   return (
     <div className={AppStyles.App}>
       <div className={AppStyles.container}>
-        {/* <div className='container'> */}
         <PointsAwarding onSubmit={onSubmitPointsAwarding} />
         <TablePoints />
         <SearchHistory onSubmit={onSubmitSearchHistory} />

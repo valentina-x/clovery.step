@@ -1,5 +1,6 @@
 export type PointsAwardingFields = {
-	id: string;
+	emails: string;
 	activity: string;
-	reason: string;
+	reasonAll: string;
+	points: string;
 }

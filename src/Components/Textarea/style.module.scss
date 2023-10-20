@@ -21,6 +21,7 @@
 	&_textarea {
 		width: 100%;
 		height: remHandler(116);
+		display: block;
 		font-family: $regular;
 		padding: remHandler(10) remHandler(8);
 		resize: none;

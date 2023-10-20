@@ -18,7 +18,7 @@ export default function TablePoints() {
         <Title className={`${styles.points__item} ${styles.points__item_gray}`}>Начисления</Title>
         <Title className={`${styles.points__item} ${styles.points__item_gray}`}>Баллы</Title>
       </div>
-      <div className={`${styles.points__container}`} id='load'>
+      <div className={`${styles.points__container}`}>
         <div className={`${styles.points__row}`}>
           <Title className={`${styles.points__item}`}>2378680444322</Title>
           <Title className={`${styles.points__item}`}>5 </Title>
