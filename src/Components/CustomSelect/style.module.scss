@@ -190,6 +190,7 @@
 
 .dopinputs {
 	cursor: initial;
+	margin-top: remHandler(25);
 
 	&_hidden {
 		opacity: 0;

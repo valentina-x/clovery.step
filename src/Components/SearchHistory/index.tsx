@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
-import styles from './style.module.scss';
 
 /* components */
 import Button, { ButtonStyles } from '../Button/index';
 import Title, { TitleStyles } from '../Title/index';
 import Input, { InputStyles } from '../Input/index';
+
+import styles from './style.module.scss';
 
 /* types data form */
 import SearchHistoryFields from './types';

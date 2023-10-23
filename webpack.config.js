@@ -16,6 +16,13 @@ const options = {
 
 module.exports = {
   entry: path.resolve(__dirname, './src/index.tsx'),
+  entry: {
+    main: path.resolve(__dirname, './src/index.tsx'),
+    points_awarding: path.resolve(__dirname, './src/Pages/PointsAwarding/index.tsx'),
+    table_points: path.resolve(__dirname, './src/Pages/TablePoints/index.tsx'),
+    search_history: path.resolve(__dirname, './src/Pages/SearchHistory/index.tsx'),
+  },
+
   output: {
     path: path.resolve(__dirname, './build'),
     filename: '[name].[hash].js',
@@ -29,6 +36,12 @@ module.exports = {
     port: 3001,
     watchFiles: ['./src/*.pug', './**/*.scss'],
     hot: true,
+    // proxy: {
+    //   '/Table.json': {
+    //     target: 'http://localhost:3000',
+    //     pathRewrite: {'^/Table.json' : '/src/Table.json'},
+    //   },
+    // },
   },
   module: {
     rules: [
@@ -85,11 +98,25 @@ module.exports = {
     }),
     new PugLintPlugin(options),
     new CopyWebpackPlugin({
-      patterns: [
-        { from: './src/Assets/images', to: 'images' }, // Откуда и куда копировать
-      ],
+      patterns: [{ from: './src/Assets/images', to: 'images' }],
     }),
     // new BundleAnalyzerPlugin(),
+
+    new HtmlWebpackPlugin({
+      template: './src/PointsAwarding.pug',
+      filename: 'PointsAwarding.html',
+      chunks: ['libs', 'points_awarding'],
+    }),
+    new HtmlWebpackPlugin({
+      template: './src/TablePoints.pug',
+      filename: 'TablePoints.html',
+      chunks: ['libs', 'table_points'],
+    }),
+    new HtmlWebpackPlugin({
+      template: './src/SearchHistory.pug',
+      filename: 'SearchHistory.html',
+      chunks: ['libs', 'search_history'],
+    }),
   ],
   optimization: {
     minimizer: [`...`, new CssMinimizerPlugin()],

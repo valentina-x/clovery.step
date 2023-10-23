@@ -36,9 +36,10 @@ export default function PointsAwarding({ onSubmit }: IPointsAwardingProps) {
   };
 
   const handleEmailsChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
-    let trimmedEmails = event.target.value.trim().replace(/,$/, '');
-    setEmails(trimmedEmails);
-    setIsShowClearButtonEmails(trimmedEmails.length > 0);
+    const value = event.target.value;
+    // let trimmedEmails = event.target.value.trim().replace(/,$/, '');
+    setEmails(value);
+    setIsShowClearButtonEmails(value.length > 0);
   };
 
   const handleClearInputEmails = () => {
@@ -122,6 +123,7 @@ export default function PointsAwarding({ onSubmit }: IPointsAwardingProps) {
       emails: formData.get('emails') as string,
       activity: formData.get('activity') as string,
       reason_all: formData.get('reason_all') as string,
+      reason: formData.get('reason') as string,
       points: formData.get('points') as string,
     };
 
@@ -168,14 +170,14 @@ export default function PointsAwarding({ onSubmit }: IPointsAwardingProps) {
             formErrors.emails.hasError ? TitleStyles.title_error : ''
           }`}
         >
-          Кому
+          Кому*
         </Title>
         <Textarea
           className={`${TextareaStyles.input} ${TextareaStyles.input_textarea} ${
             formErrors.emails.hasError ? styles.error : ''
           }`}
           name='emails'
-          placeholder='Введите email адреса через запятую'
+          placeholder='Введите почтовые адреса пользователей через запятую'
           onChange={handleEmailsChange}
           value={emails}
         />
@@ -211,7 +213,7 @@ export default function PointsAwarding({ onSubmit }: IPointsAwardingProps) {
             formErrors.activity.hasError ? TitleStyles.title_error : ''
           }`}
         >
-          Активность / конкурс
+          Мероприятие*
         </Title>
         <Input
           type='text'
@@ -219,7 +221,7 @@ export default function PointsAwarding({ onSubmit }: IPointsAwardingProps) {
             formErrors.activity.hasError ? styles.error : ''
           }`}
           name='activity'
-          placeholder='Введите текст'
+          placeholder='Введите id мероприятия'
           onChange={handleClearButtonActivivty}
           value={activity}
         />
@@ -255,7 +257,7 @@ export default function PointsAwarding({ onSubmit }: IPointsAwardingProps) {
             formErrors.reason_all.hasError ? CustomSelectStyles.error : ''
           }`}
         >
-          Причина начисления
+          Действие*
         </Title>
         <CustomSelect
           nameInputMain='reason_all'

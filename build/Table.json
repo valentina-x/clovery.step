@@ -1,0 +1,26 @@
+[
+	{
+		"id": "1",
+		"email": "test@mail.ru",
+		"accruals": 5,
+		"points": 35
+	},
+	{
+		"id": "2",
+		"email": "testtttt@mail.ru",
+		"accruals": 2,
+		"points": 40
+	},
+	{
+		"id": "3",
+		"email": "test21312@mail.ru",
+		"accruals": 3,
+		"points": 50
+	},
+	{
+		"id": "4",
+		"email": "tessst@mail.ru",
+		"accruals": 1,
+		"points": 5
+	}
+]

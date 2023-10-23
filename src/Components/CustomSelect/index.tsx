@@ -17,18 +17,6 @@ interface CustomSelectProps extends React.RefAttributes<ICustomSelectRef> {
   };
 }
 
-// export interface ValidationResult {
-//   message: string;
-//   hasError: boolean;
-//   isValidCustomSelect: boolean;
-// }
-
-// export interface CustomSelectValidations {
-//   reasonAll: ValidationResult;
-//   points: ValidationResult;
-//   isValidCustomSelect: boolean;
-// }
-
 const CustomSelect: React.FC<CustomSelectProps> = ({
   nameInputMain,
   items,
@@ -36,31 +24,40 @@ const CustomSelect: React.FC<CustomSelectProps> = ({
   validatePoints,
 }) => {
   const [selectedItems, setSelectedItems] = useState<string[]>([]);
-  // const [reasonAllError, setReasonAllError] = useState({ message: '', hasError: false });
-  // const [pointsError, setPointsError] = useState({ message: '', hasError: false });
-
   const [isShowDopinputs, setIsShowDopinputs] = useState(false);
-
   const selectionRef = useRef<HTMLDivElement>(null);
 
-  // const validateReasonAndPoints = () => {
-  //   let isValidCustomSelect = true;
-  //   const errors = {
-  //     reasonAll: { message: 'Это поле обязательно', hasError: false },
-  //     points: { message: 'Это поле обязательно', hasError: false },
-  //   };
+  const [reason, setReason] = useState('');
+  const [isShowClearButtonReason, setIsShowClearButtonReason] = useState(false);
 
-  //   if (selectedItems.length === 0) {
-  //     errors.reasonAll = {
-  //       message: 'Выберите пункт из списка',
-  //       hasError: true,
-  //     };
-  //     isValidCustomSelect = false;
-  //   }
+  const handleClearButtonReason = (e: any) => {
+    const value = e.target.value;
+    setReason(value);
+    setIsShowClearButtonReason(value.length > 0);
+  };
 
-  //   setReasonAllError(errors.reasonAll);
-  //   setPointsError(errors.points);
-  // };
+  const handleClearInputReason = () => {
+    setTimeout(() => {
+      setReason('');
+      setIsShowClearButtonReason(false);
+    }, 0);
+  };
+
+  const [points, setPoints] = useState('');
+  const [isShowClearButtonPoints, setIsShowClearButtonPoints] = useState(false);
+
+  const handleClearButtonPoints = (e: any) => {
+    const value = e.target.value;
+    setPoints(value);
+    setIsShowClearButtonPoints(value.length > 0);
+  };
+
+  const handleClearInputPoints = () => {
+    setTimeout(() => {
+      setPoints('');
+      setIsShowClearButtonPoints(false);
+    }, 0);
+  };
 
   useEffect(() => {
     const handleDocumentClick = (event: MouseEvent) => {
@@ -138,29 +135,10 @@ const CustomSelect: React.FC<CustomSelectProps> = ({
       });
     }
 
-    // if (label.classList.contains(`${CustomSelectStyles.selection__listitem_other}`)) {
-    //   const list = label.parentNode as HTMLElement;
-    //   const dopinputs = document.querySelector(`.${CustomSelectStyles.dopinputs}`) as HTMLElement;
-    //   list.classList.remove(`${CustomSelectStyles.active}`);
-    //   if (dopinputs.classList.contains(`${CustomSelectStyles.dopinputs_hidden}`)) {
-    //     isShowDopinputs = true;
-    //     dopinputs.classList.remove(`${CustomSelectStyles.dopinputs_hidden}`);
-    //   } else {
-    //     isShowDopinputs = false;
-    //     dopinputs.classList.add(`${CustomSelectStyles.dopinputs_hidden}`);
-    //   }
-    // }
-
     if (label.classList.contains(`${CustomSelectStyles.selection__listitem_other}`)) {
       const list = label.parentNode as HTMLElement;
       setIsShowDopinputs(!isShowDopinputs);
       list.classList.remove(`${CustomSelectStyles.active}`);
-      // const dopinputs = document.querySelector(`.${CustomSelectStyles.dopinputs}`) as HTMLElement;
-      // if (dopinputs.classList.contains(`${CustomSelectStyles.dopinputs_hidden}`)) {
-      //   dopinputs.classList.remove(`${CustomSelectStyles.dopinputs_hidden}`);
-      // } else {
-      //   dopinputs.classList.add(`${CustomSelectStyles.dopinputs_hidden}`);
-      // }
     }
   };
 
@@ -228,7 +206,28 @@ const CustomSelect: React.FC<CustomSelectProps> = ({
               className={`${InputStyles.input} ${InputStyles.input_text}`}
               name='reason'
               placeholder='Введите текст'
+              onChange={handleClearButtonReason}
+              value={reason}
             />
+            {isShowClearButtonReason && (
+              <div className='clearInput clearInput_pos' onClick={handleClearInputReason}>
+                <svg
+                  width='8'
+                  height='8'
+                  viewBox='0 0 8 8'
+                  fill='none'
+                  xmlns='http://www.w3.org/2000/svg'
+                >
+                  <path
+                    d='M6.5 1.5L1.5 6.5M1.5 1.5L6.5 6.5'
+                    stroke='#1F1F1F'
+                    strokeWidth='1.5'
+                    strokeLinecap='round'
+                    strokeLinejoin='round'
+                  />
+                </svg>
+              </div>
+            )}
           </label>
           <label>
             <Title
@@ -245,10 +244,31 @@ const CustomSelect: React.FC<CustomSelectProps> = ({
               }`}
               name='points'
               placeholder='0'
+              onChange={handleClearButtonPoints}
+              value={points}
             />
             {validatePoints?.hasError && (
               <div className={`${CustomSelectStyles.error} ${CustomSelectStyles.error_text}`}>
                 {validatePoints.message}
+              </div>
+            )}
+            {isShowClearButtonPoints && (
+              <div className='clearInput clearInput_pos' onClick={handleClearInputPoints}>
+                <svg
+                  width='8'
+                  height='8'
+                  viewBox='0 0 8 8'
+                  fill='none'
+                  xmlns='http://www.w3.org/2000/svg'
+                >
+                  <path
+                    d='M6.5 1.5L1.5 6.5M1.5 1.5L6.5 6.5'
+                    stroke='#1F1F1F'
+                    strokeWidth='1.5'
+                    strokeLinecap='round'
+                    strokeLinejoin='round'
+                  />
+                </svg>
               </div>
             )}
           </label>
