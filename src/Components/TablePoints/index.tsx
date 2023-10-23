@@ -54,7 +54,9 @@ export default function TablePoints() {
         Баллы участников
       </Title>
       <div className={`${styles.points__header}`}>
-        <Title className={`${styles.points__item} ${styles.points__item_gray}`}>ID участника</Title>
+        <Title className={`${styles.points__item} ${styles.points__item_gray}`}>
+          Почта участника
+        </Title>
         <Title className={`${styles.points__item} ${styles.points__item_gray}`}>Начисления</Title>
         <Title className={`${styles.points__item} ${styles.points__item_gray}`}>Баллы</Title>
       </div>
