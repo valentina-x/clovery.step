@@ -40,6 +40,10 @@
 		position: absolute;
 		bottom: remHandler(-21);
 	}
+
+	&_text {
+		font-size: remHandler(12);
+	}
 }
 
 textarea.error,

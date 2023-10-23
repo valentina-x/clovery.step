@@ -2,7 +2,7 @@ import React from 'react';
 import AppStyles from './style.module.scss';
 
 import { PointsAwardingFields } from '../PointsAwarding/types';
-import { SearchHistoryFields } from '../SearchHistory/types';
+import SearchHistoryFields from '../SearchHistory/types';
 import PointsAwarding from '../PointsAwarding';
 import TablePoints from '../TablePoints';
 import SearchHistory from '../SearchHistory';

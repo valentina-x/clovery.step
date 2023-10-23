@@ -70,3 +70,28 @@
 .marginMb12 {
   margin-bottom: remHandler(12);
 }
+
+
+
+.error {
+  color: $status-red;
+
+  &_pos {
+    position: absolute;
+    bottom: remHandler(-21);
+  }
+
+  &_text {
+    font-size: remHandler(12);
+  }
+}
+
+textarea.error,
+input.error {
+  color: $text;
+  border-color: $status-red;
+
+  &::placeholder {
+    color: $text;
+  }
+}

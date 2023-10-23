@@ -1,66 +1,30 @@
 import React, { useState, useRef, useEffect } from 'react';
 import CustomSelectStyles from './style.module.scss';
+
 import Input, { InputStyles } from '../Input/index';
 import Title, { TitleStyles } from '../Title/index';
-import ICustomSelectRef from './ICustomSelectRef ';
 
-interface CustomSelectProps extends React.RefAttributes<ICustomSelectRef> {
+interface CustomSelectProps {
   nameInputMain: string;
   items: { value: string; name: string; id: string; text: string; type: string; class?: string }[];
-  validateReasonAll?: {
-    message: string;
-    hasError: boolean;
-  };
-  validatePoints?: {
-    message: string;
-    hasError: boolean;
+  showAdditionalInputs?: boolean;
+  validateReasonAndPoints: (fields: { reason_all: string; points: string }) => {
+    reasonAll: { message: string; hasError: boolean };
+    points: { message: string; hasError: boolean };
   };
 }
-
-// export interface ValidationResult {
-//   message: string;
-//   hasError: boolean;
-//   isValidCustomSelect: boolean;
-// }
-
-// export interface CustomSelectValidations {
-//   reasonAll: ValidationResult;
-//   points: ValidationResult;
-//   isValidCustomSelect: boolean;
-// }
 
 const CustomSelect: React.FC<CustomSelectProps> = ({
   nameInputMain,
   items,
-  validateReasonAll,
-  validatePoints,
+  showAdditionalInputs,
+  validateReasonAndPoints,
 }) => {
   const [selectedItems, setSelectedItems] = useState<string[]>([]);
-  // const [reasonAllError, setReasonAllError] = useState({ message: '', hasError: false });
-  // const [pointsError, setPointsError] = useState({ message: '', hasError: false });
-
-  const [isShowDopinputs, setIsShowDopinputs] = useState(false);
-
   const selectionRef = useRef<HTMLDivElement>(null);
 
-  // const validateReasonAndPoints = () => {
-  //   let isValidCustomSelect = true;
-  //   const errors = {
-  //     reasonAll: { message: 'Это поле обязательно', hasError: false },
-  //     points: { message: 'Это поле обязательно', hasError: false },
-  //   };
-
-  //   if (selectedItems.length === 0) {
-  //     errors.reasonAll = {
-  //       message: 'Выберите пункт из списка',
-  //       hasError: true,
-  //     };
-  //     isValidCustomSelect = false;
-  //   }
-
-  //   setReasonAllError(errors.reasonAll);
-  //   setPointsError(errors.points);
-  // };
+  const [reasonAllError, setReasonAllError] = useState({ message: '', hasError: false });
+  const [pointsError, setPointsError] = useState({ message: '', hasError: false });
 
   useEffect(() => {
     const handleDocumentClick = (event: MouseEvent) => {
@@ -96,6 +60,11 @@ const CustomSelect: React.FC<CustomSelectProps> = ({
       }
     }
   };
+
+  const [errors, setErrors] = useState({
+    reasonAll: { message: '', hasError: false },
+    points: { message: '', hasError: false },
+  });
 
   const handleLabelClick = (event: React.MouseEvent<HTMLLabelElement, MouseEvent>) => {
     const label = event.target as HTMLLabelElement;
@@ -138,30 +107,34 @@ const CustomSelect: React.FC<CustomSelectProps> = ({
       });
     }
 
-    // if (label.classList.contains(`${CustomSelectStyles.selection__listitem_other}`)) {
-    //   const list = label.parentNode as HTMLElement;
-    //   const dopinputs = document.querySelector(`.${CustomSelectStyles.dopinputs}`) as HTMLElement;
-    //   list.classList.remove(`${CustomSelectStyles.active}`);
-    //   if (dopinputs.classList.contains(`${CustomSelectStyles.dopinputs_hidden}`)) {
-    //     isShowDopinputs = true;
-    //     dopinputs.classList.remove(`${CustomSelectStyles.dopinputs_hidden}`);
-    //   } else {
-    //     isShowDopinputs = false;
-    //     dopinputs.classList.add(`${CustomSelectStyles.dopinputs_hidden}`);
-    //   }
-    // }
-
     if (label.classList.contains(`${CustomSelectStyles.selection__listitem_other}`)) {
       const list = label.parentNode as HTMLElement;
-      setIsShowDopinputs(!isShowDopinputs);
+      const dopinputs = document.querySelector(`.${CustomSelectStyles.dopinputs}`) as HTMLElement;
       list.classList.remove(`${CustomSelectStyles.active}`);
-      // const dopinputs = document.querySelector(`.${CustomSelectStyles.dopinputs}`) as HTMLElement;
-      // if (dopinputs.classList.contains(`${CustomSelectStyles.dopinputs_hidden}`)) {
-      //   dopinputs.classList.remove(`${CustomSelectStyles.dopinputs_hidden}`);
-      // } else {
-      //   dopinputs.classList.add(`${CustomSelectStyles.dopinputs_hidden}`);
-      // }
+      if (dopinputs.classList.contains(`${CustomSelectStyles.dopinputs_hidden}`)) {
+        dopinputs.classList.remove(`${CustomSelectStyles.dopinputs_hidden}`);
+      } else {
+        dopinputs.classList.add(`${CustomSelectStyles.dopinputs_hidden}`);
+      }
     }
+
+    const input = document.querySelector('input[name="reason_all"]') as HTMLInputElement;
+
+    const fields = {
+      reason_all: selectedItems.join(', '), // Подставляем текущее значение selectedItems
+      points: '', // Подставляем значение points, если необходимо
+    };
+
+    console.log('fields.reason_all', fields.reason_all);
+
+    const validationResults = validateReasonAndPoints(fields);
+    setReasonAllError(validationResults.reasonAll);
+
+    setErrors({
+      ...errors,
+      reasonAll: validationResults.reasonAll,
+      points: validationResults.points,
+    });
   };
 
   return (
@@ -169,29 +142,18 @@ const CustomSelect: React.FC<CustomSelectProps> = ({
       <div ref={selectionRef} className={CustomSelectStyles.selection}>
         <div className={CustomSelectStyles.selection__item}>
           <div
-            className={`${CustomSelectStyles.selection__input} ${
-              CustomSelectStyles.selection__input_disabled
-            } ${validateReasonAll?.hasError ? CustomSelectStyles.error : ''}`}
+            className={`${CustomSelectStyles.selection__input} ${CustomSelectStyles.selection__input_disabled}`}
             onClick={handleClick}
           >
-            <input
-              type='text'
-              name={nameInputMain}
-              placeholder='Выберите из списка'
-              autoComplete='off'
-            />
+            <input type='text' name={nameInputMain} value='' placeholder='Выберите из списка' />
             <svg>
               <use xlinkHref='#s_chevron-down'></use>
             </svg>
           </div>
 
-          {validateReasonAll?.hasError && (
-            <div
-              className={`${CustomSelectStyles.error}  ${CustomSelectStyles.error_pos} ${CustomSelectStyles.error_text}`}
-            >
-              {validateReasonAll.message}
-            </div>
-          )}
+          <div className={CustomSelectStyles.error}>
+            {reasonAllError.hasError && <span>{reasonAllError.message}</span>}
+          </div>
 
           <div className={CustomSelectStyles.selection__list}>
             {items.map((item) => (
@@ -215,8 +177,8 @@ const CustomSelect: React.FC<CustomSelectProps> = ({
         </div>
       </div>
 
-      {isShowDopinputs && (
-        <div className={`${CustomSelectStyles.dopinputs}`}>
+      {showAdditionalInputs && (
+        <div className={`${CustomSelectStyles.dopinputs} ${CustomSelectStyles.dopinputs_hidden}`}>
           <label className={`${CustomSelectStyles.margin}`}>
             <Title
               className={`${TitleStyles.title} ${TitleStyles.title_size14} ${TitleStyles.title_mb8}`}
@@ -232,25 +194,16 @@ const CustomSelect: React.FC<CustomSelectProps> = ({
           </label>
           <label>
             <Title
-              className={`${TitleStyles.title} ${TitleStyles.title_size14} ${
-                TitleStyles.title_mb8
-              }  ${validatePoints?.hasError ? CustomSelectStyles.error : ''}`}
+              className={`${TitleStyles.title} ${TitleStyles.title_size14} ${TitleStyles.title_mb8}`}
             >
               Количество баллов
             </Title>
             <Input
               type='number'
-              className={`${InputStyles.input} ${InputStyles.input_text} ${
-                validatePoints?.hasError ? CustomSelectStyles.error : ''
-              }`}
+              className={`${InputStyles.input} ${InputStyles.input_text}`}
               name='points'
               placeholder='0'
             />
-            {validatePoints?.hasError && (
-              <div className={`${CustomSelectStyles.error} ${CustomSelectStyles.error_text}`}>
-                {validatePoints.message}
-              </div>
-            )}
           </label>
         </div>
       )}
@@ -258,5 +211,5 @@ const CustomSelect: React.FC<CustomSelectProps> = ({
   );
 };
 
-export default CustomSelect;
 export { CustomSelectStyles };
+export default CustomSelect;

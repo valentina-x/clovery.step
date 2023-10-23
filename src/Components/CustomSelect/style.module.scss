@@ -11,6 +11,14 @@
 		width: 100%;
 		position: relative;
 		cursor: pointer;
+
+		&:focus .selection__input {
+			border-color: $primary;
+		}
+
+		&:hover .selection__input {
+			border-color: $primary;
+		}
 	}
 
 	&__input {
@@ -27,6 +35,10 @@
 		box-sizing: border-box;
 		transition: all 0.6s;
 
+		&.error {
+			border-color: $status-red;
+		}
+
 		& * {
 			pointer-events: none;
 		}
@@ -36,12 +48,12 @@
 			border: none;
 			padding: 0;
 			margin: 0;
-			color: $gray-dark;
 			font-size: remHandler(16);
 			user-select: none;
 			background-color: transparent;
 
 			&::placeholder {
+				color: $text50;
 				font-size: remHandler(16);
 				transition: all 0.6s;
 			}
@@ -191,15 +203,23 @@
 
 .error {
 	color: $status-red;
-	font-size: remHandler(12);
 
 	&_pos {
 		position: absolute;
 		bottom: remHandler(-21);
 	}
+
+	&_text {
+		font-size: remHandler(12);
+	}
 }
 
 textarea.error,
 input.error {
+	color: $text;
 	border-color: $status-red;
+
+	&::placeholder {
+		color: $text;
+	}
 }

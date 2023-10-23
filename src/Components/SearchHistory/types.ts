@@ -1,5 +1,3 @@
-export type SearchHistoryFields = {
-  id: string;
-  submitter: HTMLElement
-  
+export default interface SearchHistoryFields {
+  email: string;
 };

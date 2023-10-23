@@ -16,12 +16,47 @@ interface IPointsAwardingProps {
 }
 
 export default function PointsAwarding({ onSubmit }: IPointsAwardingProps) {
-  function isValidEmails(emails: string): boolean {
+  const [isShowClearButtonEmails, setIsShowClearButtonEmails] = useState(false);
+  const [isShowClearButtonActivity, setIsShowClearButtonActivity] = useState(false);
+
+  const [emails, setEmails] = useState('');
+  const [activity, setActivity] = useState('');
+
+  const handleClearButtonActivivty = (e: any) => {
+    const value = e.target.value;
+    setActivity(value);
+    setIsShowClearButtonActivity(value.length > 0);
+  };
+
+  const handleClearInputActivivty = () => {
+    setTimeout(() => {
+      setActivity('');
+      setIsShowClearButtonActivity(false);
+    }, 0);
+  };
+
+  const handleEmailsChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
+    let trimmedEmails = event.target.value.trim().replace(/,$/, '');
+    setEmails(trimmedEmails);
+    setIsShowClearButtonEmails(trimmedEmails.length > 0);
+  };
+
+  const handleClearInputEmails = () => {
+    setTimeout(() => {
+      setEmails('');
+      setIsShowClearButtonEmails(false);
+    }, 0);
+  };
+
+  function isValidEmails(emails: string): { valid: boolean; count: number } {
     const emailArray = emails.split(',').map((email) => email.trim());
 
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-    return emailArray.every((email) => emailRegex.test(email));
+    const count = emailArray.length;
+    const valid = emailArray.every((email) => emailRegex.test(email));
+
+    return { valid, count };
   }
 
   const validateForm = (formData: PointsAwardingFields) => {
@@ -41,20 +76,34 @@ export default function PointsAwarding({ onSubmit }: IPointsAwardingProps) {
     if (formData.emails.trim() === '') {
       newErrors.emails = { message: 'Это поле обязательно', hasError: true };
       isValid = false;
-    } else {
-      if (!isValidEmails(formData.emails)) {
-        newErrors.emails = { message: 'Проверьте правильность введенных данных', hasError: true };
-        isValid = false;
-      } else {
-        newErrors.emails = { message: '', hasError: false };
-      }
-    }
-
-    if (formData.reasonAll.trim() === '') {
-      newErrors.reasonAll = { message: 'Это поле обязательно', hasError: true };
+    } else if (isValidEmails(formData.emails).count > 10) {
+      newErrors.emails = {
+        message: 'Нельзя за раз начислить больше, чем 10 пользователям',
+        hasError: true,
+      };
+      isValid = false;
+    } else if (!isValidEmails(formData.emails).valid) {
+      newErrors.emails = { message: 'Проверьте правильность введенных данных', hasError: true };
       isValid = false;
     } else {
-      newErrors.reasonAll = {
+      newErrors.emails = { message: '', hasError: false };
+    }
+
+    if (formData.reason_all.trim() === '') {
+      newErrors.reason_all = { message: 'Это поле обязательно', hasError: true };
+      isValid = false;
+    } else {
+      newErrors.reason_all = {
+        message: '',
+        hasError: false,
+      };
+    }
+
+    if (formData.points?.trim() === '') {
+      newErrors.points = { message: 'Это поле обязательно', hasError: true };
+      isValid = false;
+    } else {
+      newErrors.points = {
         message: '',
         hasError: false,
       };
@@ -72,7 +121,7 @@ export default function PointsAwarding({ onSubmit }: IPointsAwardingProps) {
     const data: PointsAwardingFields = {
       emails: formData.get('emails') as string,
       activity: formData.get('activity') as string,
-      reasonAll: formData.get('reason_all') as string,
+      reason_all: formData.get('reason_all') as string,
       points: formData.get('points') as string,
     };
 
@@ -87,8 +136,8 @@ export default function PointsAwarding({ onSubmit }: IPointsAwardingProps) {
         setFormErrors({
           emails: { message: 'Проверьте вводимые почты пользователей', hasError: false },
           activity: { message: 'Введите название конкруса или активности', hasError: false },
-          reasonAll: { message: 'Выберите пункт из списка', hasError: false },
-          // ...
+          reason_all: { message: 'Выберите пункт из списка', hasError: false },
+          points: { message: 'Введите количество баллов', hasError: false },
         });
       }
     } else {
@@ -101,8 +150,8 @@ export default function PointsAwarding({ onSubmit }: IPointsAwardingProps) {
   >({
     emails: { message: 'Проверьте вводимые почты пользователей', hasError: false },
     activity: { message: 'Введите название конкруса или активности', hasError: false },
-    reasonAll: { message: 'Выберите пункт из списка', hasError: false },
-    // ...
+    reason_all: { message: 'Выберите пункт из списка', hasError: false },
+    points: { message: 'Введите количество баллов', hasError: false },
   });
 
   return (
@@ -127,9 +176,32 @@ export default function PointsAwarding({ onSubmit }: IPointsAwardingProps) {
           }`}
           name='emails'
           placeholder='Введите email адреса через запятую'
+          onChange={handleEmailsChange}
+          value={emails}
         />
         {formErrors.emails.hasError && (
-          <div className={`${styles.error} ${styles.error_pos}`}>{formErrors.emails.message}</div>
+          <div className={`${styles.error} ${styles.error_pos} ${styles.error_text}`}>
+            {formErrors.emails.message}
+          </div>
+        )}
+        {isShowClearButtonEmails && (
+          <div className='clearInput clearInput_pos' onClick={handleClearInputEmails}>
+            <svg
+              width='8'
+              height='8'
+              viewBox='0 0 8 8'
+              fill='none'
+              xmlns='http://www.w3.org/2000/svg'
+            >
+              <path
+                d='M6.5 1.5L1.5 6.5M1.5 1.5L6.5 6.5'
+                stroke='#1F1F1F'
+                strokeWidth='1.5'
+                strokeLinecap='round'
+                strokeLinejoin='round'
+              />
+            </svg>
+          </div>
         )}
       </label>
 
@@ -148,22 +220,47 @@ export default function PointsAwarding({ onSubmit }: IPointsAwardingProps) {
           }`}
           name='activity'
           placeholder='Введите текст'
+          onChange={handleClearButtonActivivty}
+          value={activity}
         />
         {formErrors.activity.hasError && (
-          <div className={`${styles.error} ${styles.error_pos}`}>{formErrors.activity.message}</div>
+          <div className={`${styles.error} ${styles.error_pos} ${styles.error_text}`}>
+            {formErrors.activity.message}
+          </div>
+        )}
+        {isShowClearButtonActivity && (
+          <div className='clearInput clearInput_pos' onClick={handleClearInputActivivty}>
+            <svg
+              width='8'
+              height='8'
+              viewBox='0 0 8 8'
+              fill='none'
+              xmlns='http://www.w3.org/2000/svg'
+            >
+              <path
+                d='M6.5 1.5L1.5 6.5M1.5 1.5L6.5 6.5'
+                stroke='#1F1F1F'
+                strokeWidth='1.5'
+                strokeLinecap='round'
+                strokeLinejoin='round'
+              />
+            </svg>
+          </div>
         )}
       </label>
 
       <label>
         <Title
-          className={`${TitleStyles.title} ${TitleStyles.title_size14} ${TitleStyles.title_mb8}`}
+          className={`${TitleStyles.title} ${TitleStyles.title_size14} ${TitleStyles.title_mb8} ${
+            formErrors.reason_all.hasError ? CustomSelectStyles.error : ''
+          }`}
         >
           Причина начисления
         </Title>
         <CustomSelect
           nameInputMain='reason_all'
-          showAdditionalInputs={true}
-          error={formErrors.reason_all}
+          validateReasonAll={formErrors.reason_all}
+          validatePoints={formErrors.points}
           items={[
             {
               value: '5',

@@ -13,7 +13,7 @@
 
 	&_text {
 		height: remHandler(44);
-		padding: 0 remHandler(8);
+		padding: 0 remHandler(40) 0 remHandler(8);
 	}
 
 	&::placeholder {
@@ -27,5 +27,28 @@
 
 	&:hover {
 		border-color: $primary;
+	}
+}
+
+.error {
+	color: $status-red;
+
+	&_pos {
+		position: absolute;
+		bottom: remHandler(-21);
+	}
+
+	&_text {
+		font-size: remHandler(12);
+	}
+}
+
+textarea.error,
+input.error {
+	color: $text;
+	border-color: $status-red;
+
+	&::placeholder {
+		color: $text50;
 	}
 }

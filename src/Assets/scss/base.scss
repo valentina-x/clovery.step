@@ -18,3 +18,37 @@ body {
 a {
 	color: $links;
 }
+
+label {
+	position: relative;
+}
+
+.clearInput {
+	width: remHandler(16.67);
+	height: remHandler(16.67);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background-color: $light-gray;
+	border-radius: 100%;
+	transition: all 0.6s;
+
+	& svg {
+		width: remHandler(8);
+		height: remHandler(8);
+
+		& path {
+			stroke: $text50;
+		}
+	}
+
+	&_pos {
+		position: absolute;
+		top: remHandler(40);
+		right: remHandler(12);
+	}
+
+	&:hover {
+		cursor: pointer;
+	}
+}
